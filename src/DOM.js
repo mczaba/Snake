@@ -1,6 +1,6 @@
 import { snake } from './snake.js'
 
-boardContainer = document.querySelector('#boardContainer')
+const boardContainer = document.querySelector('#boardContainer')
 let food = Math.floor((Math.random() * 2449));
 
 function createGrid(width) {
@@ -19,8 +19,7 @@ function createGrid(width) {
 }
 
 function renderBoard() {
-    let boxes = document.querySelectorAll('.box')
-    let position = snake.position
+    let boxes = document.querySelectorAll('.box');
     boxes.forEach(element => {
         element.style.backgroundColor = 'white';
     });
