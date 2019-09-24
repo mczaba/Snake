@@ -20,6 +20,7 @@ function createGrid(width) {
 
 function renderBoard() {
     let boxes = document.querySelectorAll('.box')
+    let position = snake.position
     boxes.forEach(element => {
         element.style.backgroundColor = 'white';
     });
@@ -33,24 +34,26 @@ function renderBoard() {
 
 function gameOn(event) {
     if (event.key === 'Enter') {
+        let direction = 'down';
         document.addEventListener('keydown', (event) => {
             let char = event.key;
             switch (char) {
                 case 'ArrowRight':
-                    snake.changeDirection('right');
+                    direction = 'right';
                     break;
                 case 'ArrowLeft':
-                    snake.changeDirection('left');
+                    direction = 'left';
                     break;
                 case 'ArrowDown':
-                    snake.changeDirection('down');
+                    direction = 'down';
                     break;
                 case 'ArrowUp':
-                    snake.changeDirection('up');
+                    direction = 'up';
                     break;
             }
         });
         setInterval(() => {
+            snake.changeDirection(direction);
             if (snake.newHeadPosition() === food) {
                 snake.eat(food);
                 food = Math.floor((Math.random() * 2449));
@@ -63,7 +66,7 @@ function gameOn(event) {
 }
 function events() {
     document.addEventListener('keydown', gameOn);
-   
+
 }
 
 export { createGrid, renderBoard, events };
