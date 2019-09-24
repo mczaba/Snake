@@ -5,7 +5,7 @@ const snake = (() => {
     const newHeadPosition = () => {
         switch (direction) {
             case 'up':
-                if (position[0] < 0) { return position[0] + 2450; }
+                if (position[0] < 50) { return position[0] + 2450; }
                 else { return position[0] - 50; }
             case 'down':
                 if (position[0] > 2449) { return position[0] - 2450; }
