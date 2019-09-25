@@ -21,15 +21,24 @@ const snake = (() => {
     const move = () => {
         let newPosition = newHeadPosition();
         if (position.includes(newPosition)) {
-            alert('you lost, noob')
-            location.reload();
+            return false;
         }
         else {
             for (let i = 1; i < (length); i++) {
                 position[length - i] = position[length - i - 1];
             }
             position[0] = newPosition;
+            return true;
         }
+    }
+
+    const reset = () => {
+        position.splice(0,length);
+        length = 3;
+        position.push(125);
+        position.push(75);
+        position.push(25);
+        direction = 'down'    
     }
 
     const eat = (number) => {
@@ -48,7 +57,8 @@ const snake = (() => {
         move,
         changeDirection,
         eat,
-        newHeadPosition
+        newHeadPosition,
+        reset,
     };
 })();
 

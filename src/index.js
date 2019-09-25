@@ -1,5 +1,5 @@
-import {createGrid, renderBoard, events} from './DOM.js'
+import {renderIntro} from './DOM.js'
+import {startEvents} from './events.js'
 
-createGrid(50);
-renderBoard();
-events();
+renderIntro();
+startEvents();

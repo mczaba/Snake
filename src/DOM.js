@@ -1,21 +1,46 @@
 import { snake } from './snake.js'
+import {food} from './game.js'
 
 const boardContainer = document.querySelector('#boardContainer')
-let food = Math.floor((Math.random() * 2449));
+
+function clearBoard(){
+    while(boardContainer.firstChild){
+        boardContainer.removeChild(boardContainer.firstChild);
+    }
+}
+
+function renderIntro(){
+    let header = document.createElement('h1');
+    header.textContent = 'Snake';
+    let instructions = document.createElement('p');
+    instructions.textContent = 'press Enter or click start to play';
+    boardContainer.appendChild(header);
+    boardContainer.appendChild(instructions);
+}
+
+function renderLoss(){
+    clearBoard();
+    boardContainer.style.display = 'block'
+    let header = document.createElement('h1');
+    header.textContent = 'You lost, noob';
+    let instructions = document.createElement('p');
+    instructions.textContent = 'Press Enter to play again';
+    boardContainer.appendChild(header);
+    boardContainer.appendChild(instructions);
+}
 
 function createGrid(width) {
+    clearBoard();
     let number = width * width;
     for (let i = 0; i < number; i++) {
         let newBox = document.createElement('div');
         newBox.className = 'box';
         boardContainer.appendChild(newBox);
     }
-    let gridString = '';
-    for (let i = 0; i < width; i++) {
-        gridString += ' auto';
-    }
-    boardContainer.style.gridTemplateColumns = gridString;
-    boardContainer.style.gridTemplateRows = gridString;
+    boardContainer.style.display = 'grid';
+    let widthString = width.toString();
+    boardContainer.style.gridTemplateColumns = `repeat(${widthString}, auto)`;
+    boardContainer.style.gridTemplateRows = `repeat(${widthString}, auto)`;
 }
 
 function renderBoard() {
@@ -27,45 +52,8 @@ function renderBoard() {
         boxes[element].style.backgroundColor = 'black';
     })
     boxes[food].style.backgroundColor = 'red';
-    //console.log(snake.position);
 }
 
 
-function gameOn(event) {
-    if (event.key === 'Enter') {
-        let direction = 'down';
-        document.addEventListener('keydown', (event) => {
-            let char = event.key;
-            switch (char) {
-                case 'ArrowRight':
-                    direction = 'right';
-                    break;
-                case 'ArrowLeft':
-                    direction = 'left';
-                    break;
-                case 'ArrowDown':
-                    direction = 'down';
-                    break;
-                case 'ArrowUp':
-                    direction = 'up';
-                    break;
-            }
-        });
-        setInterval(() => {
-            snake.changeDirection(direction);
-            if (snake.newHeadPosition() === food) {
-                snake.eat(food);
-                food = Math.floor((Math.random() * 2449));
-            }
-            else { snake.move(); }
-            renderBoard();
-        }, 100);
-        document.removeEventListener('keydown', gameOn);
-    }
-}
-function events() {
-    document.addEventListener('keydown', gameOn);
 
-}
-
-export { createGrid, renderBoard, events };
+export { createGrid, renderBoard, renderIntro, renderLoss};
