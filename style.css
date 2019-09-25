@@ -7,14 +7,70 @@ body {
     margin: 0;
 }
 
-#boardContainer {
+h1 {
+    font-size: 50px;
+    margin-top: 20%;
+}
+
+#boardContainer p {
+    font-style: italic; 
+}
+#game {
+    
     display: grid;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin:-300px 0 0 -300px;
-    width: 600px;
-    height: 600px;
+    grid-template: 2fr 3fr / auto;
+    width: 30%;
+    min-width: 280px;
+    height: calc(100% - 42px);
+    margin: auto;
+    background-color: grey;
     border: 1px solid black;
+    border-radius: 10px;
+    grid-gap: 20px;
+    padding: 20px;
+}
+#boardContainer {
+    display: block;
+    border: 1px solid black;
+    background-color: white;
+    text-align: center;
 }
     
+#controls {
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    grid-gap: 10px
+}
+#controls div{
+    display: flex;
+    font-size: 30px;
+    background-color: #ececec17;
+}
+
+#controls div:hover {
+    cursor: pointer;
+}
+
+#controls div p {
+    text-align: center; 
+    margin: auto;
+}
+#up{
+    grid-area: 1 / 2 / 2 / 3;
+    
+}
+#left {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+#start{
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+#right{
+    grid-area: 2 / 3 / 3 / 4;
+}
+
+#down{
+    grid-area: 3 / 2 / 4 / 3;
+}
