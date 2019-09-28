@@ -63,7 +63,7 @@ function renderBoard() {
         boxes[element].style.backgroundColor = 'black';
     })
     boxes[food].style.backgroundColor = 'red';
-    overlayOpacity = 1- (0.02*(length - 3));
+    overlayOpacity = 1- (0.01*(length - 3));
     let opacityString = overlayOpacity.toString();
     overlay.style.backgroundColor = `rgb(255, 255, 255, ${opacityString})`;
 }
