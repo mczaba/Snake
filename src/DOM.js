@@ -54,7 +54,7 @@ function createGrid() {
 }
 
 function renderBoard() {
-    let length = snake.getLength();
+    const length = snake.getLength();
     let boxes = document.querySelectorAll('.box');
     boxes.forEach(element => {
         element.style.backgroundColor = 'white';
