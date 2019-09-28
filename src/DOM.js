@@ -2,8 +2,10 @@ import { snake } from './snake.js'
 import {food} from './game.js'
 
 const boardContainer = document.querySelector('#boardContainer')
+const overlay = document.querySelector('#overlay');
 let pixWidth;
 let pixHeight;
+let overlayOpacity = 1;
 
 function clearBoard(){
     while(boardContainer.firstChild){
@@ -52,6 +54,7 @@ function createGrid() {
 }
 
 function renderBoard() {
+    let length = snake.getLength();
     let boxes = document.querySelectorAll('.box');
     boxes.forEach(element => {
         element.style.backgroundColor = 'white';
@@ -60,6 +63,9 @@ function renderBoard() {
         boxes[element].style.backgroundColor = 'black';
     })
     boxes[food].style.backgroundColor = 'red';
+    overlayOpacity = 1- (0.02*(length - 3));
+    let opacityString = overlayOpacity.toString();
+    overlay.style.backgroundColor = `rgb(255, 255, 255, ${opacityString})`;
 }
 
 

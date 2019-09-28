@@ -54,6 +54,8 @@ const snake = (() => {
         }
     }
 
+    const getLength = () => {return length;}
+
     return {
         position,
         move,
@@ -61,6 +63,7 @@ const snake = (() => {
         eat,
         newHeadPosition,
         reset,
+        getLength,
     };
 })();
 
