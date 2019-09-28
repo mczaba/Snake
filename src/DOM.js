@@ -53,7 +53,7 @@ function createGrid() {
 }
 
 function renderBoard() {
-    const length = snake.getLength();
+    let length = snake.getLength();
     let boxes = document.querySelectorAll('.box');
     boxes.forEach(element => {
         element.style.backgroundColor = 'white';
@@ -65,9 +65,9 @@ function renderBoard() {
     // let overlayOpacity = 1- (0.005*(length - 3));
     // let opacityString = overlayOpacity.toString();
     // overlay.style.backgroundColor = `rgb(255, 255, 255, ${opacityString})`;
-    if (length > 35) {length += 30;}
+    if ((length-3) > 35) {length += 30;}
     let overlayLeft = (length - 3).toString() + "%";
-    overlay.style.left = overlayLeft;
+    overlay.style.right = overlayLeft;
 
 }
 
