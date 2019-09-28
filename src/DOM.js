@@ -2,6 +2,8 @@ import { snake } from './snake.js'
 import {food} from './game.js'
 
 const boardContainer = document.querySelector('#boardContainer')
+let pixWidth;
+let pixHeight;
 
 function clearBoard(){
     while(boardContainer.firstChild){
@@ -29,18 +31,24 @@ function renderLoss(){
     boardContainer.appendChild(instructions);
 }
 
-function createGrid(width) {
+function createGrid() {
     clearBoard();
-    let number = width * width;
-    for (let i = 0; i < number; i++) {
+    const width = boardContainer.clientWidth;
+    const height = boardContainer.clientHeight;
+    const pixSize = Math.min(width, height) / 50;
+    pixWidth = Math.floor(width / pixSize);
+    pixHeight = Math.floor(height / pixSize);
+    const area = pixWidth * pixHeight;
+    for (let i = 0; i < area; i++) {
         let newBox = document.createElement('div');
         newBox.className = 'box';
         boardContainer.appendChild(newBox);
     }
     boardContainer.style.display = 'grid';
-    let widthString = width.toString();
+    const widthString = pixWidth.toString();
+    const heightString = pixHeight.toString();
     boardContainer.style.gridTemplateColumns = `repeat(${widthString}, auto)`;
-    boardContainer.style.gridTemplateRows = `repeat(${widthString}, auto)`;
+    boardContainer.style.gridTemplateRows = `repeat(${heightString}, auto)`;
 }
 
 function renderBoard() {
@@ -56,4 +64,4 @@ function renderBoard() {
 
 
 
-export { createGrid, renderBoard, renderIntro, renderLoss};
+export { createGrid, renderBoard, renderIntro, renderLoss, pixWidth, pixHeight};

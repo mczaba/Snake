@@ -2,7 +2,7 @@ import { snake } from './snake.js'
 import { renderBoard, createGrid, renderLoss } from './DOM.js'
 import { gameEvents, startEvents } from './events.js';
 let food = 0;
-let direction = 'down';
+let direction = 'right';
 let timeout;
 
 function makeFood() {
@@ -39,7 +39,7 @@ function gameFlow() {
 
 
 function startGame(){
-    createGrid(50);
+    createGrid();
     food = makeFood();
     renderBoard();
     timeout = setInterval(gameFlow,100);

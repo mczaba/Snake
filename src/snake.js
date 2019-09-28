@@ -1,20 +1,22 @@
+import {pixHeight, pixWidth} from './DOM.js'
+
 const snake = (() => {
     let length = 3;
-    let position = [125, 75, 25];
-    let direction = 'down';
+    let position = [2, 1, 0];
+    let direction = 'right';
     const newHeadPosition = () => {
         switch (direction) {
             case 'up':
-                if (position[0] < 50) { return position[0] + 2450; }
-                else { return position[0] - 50; }
+                if (position[0] < pixWidth) { return position[0] + (pixWidth * pixHeight)-pixWidth; }
+                else { return position[0] - pixWidth; }
             case 'down':
-                if (position[0] > 2449) { return position[0] - 2450; }
-                else { return position[0] + 50; }
+                if (position[0] > ((pixWidth * pixHeight)-pixWidth -1)) { return position[0] - ((pixWidth * pixHeight)-pixWidth); }
+                else { return position[0] + pixWidth; }
             case 'right':
-                if ((position[0] + 1) % 50 === 0) { return position[0] - 49; }
+                if ((position[0] + 1) % pixWidth === 0) { return position[0] - (pixWidth - 1); }
                 else { return position[0] + 1; }
             case 'left':
-                if (position[0] % 50 === 0) { return position[0] + 49; }
+                if (position[0] % pixWidth === 0) { return position[0] + (pixWidth -1); }
                 else { return position[0] - 1; }
         }
     }
@@ -35,10 +37,10 @@ const snake = (() => {
     const reset = () => {
         position.splice(0,length);
         length = 3;
-        position.push(125);
-        position.push(75);
-        position.push(25);
-        direction = 'down'    
+        position.push(2);
+        position.push(1);
+        position.push(0);
+        direction = 'right'    
     }
 
     const eat = (number) => {
