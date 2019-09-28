@@ -65,6 +65,7 @@ function renderBoard() {
     // let overlayOpacity = 1- (0.005*(length - 3));
     // let opacityString = overlayOpacity.toString();
     // overlay.style.backgroundColor = `rgb(255, 255, 255, ${opacityString})`;
+    if (length > 35) {length += 30;}
     let overlayLeft = (length - 3).toString() + "%";
     overlay.style.left = overlayLeft;
 
