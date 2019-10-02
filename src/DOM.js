@@ -3,8 +3,8 @@ import {food} from './game.js'
 
 const boardContainer = document.querySelector('#boardContainer')
 const overlay = document.querySelector('#overlay');
-let pixWidth;
-let pixHeight;
+let pixWidth; //number of columns in the screen grid
+let pixHeight; //number of rows in the screen grid
 
 function clearBoard(){
     while(boardContainer.firstChild){
@@ -32,7 +32,7 @@ function renderLoss(){
     boardContainer.appendChild(instructions);
 }
 
-function createGrid() {
+function createGrid() { //makes the snake screen into a grid of square div
     clearBoard();
     const width = boardContainer.clientWidth;
     const height = boardContainer.clientHeight;
@@ -62,9 +62,6 @@ function renderBoard() {
         boxes[element].style.backgroundColor = 'black';
     })
     boxes[food].style.backgroundColor = 'red';
-    // let overlayOpacity = 1- (0.005*(length - 3));
-    // let opacityString = overlayOpacity.toString();
-    // overlay.style.backgroundColor = `rgb(255, 255, 255, ${opacityString})`;
     if ((length-3) > 35) {length += 30;}
     let overlayLeft = (length - 3).toString() + '%';
     overlay.style.right = overlayLeft;
