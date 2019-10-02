@@ -38,12 +38,10 @@ function gameFlow() {
 
 function gamePause() {
     clearInterval(timeout);
-    //pauseEvents();
 }
 
 function gameRestart() {
     timeout = setInterval(gameFlow, 100);
-    //gameEvents();
 }
 
 
