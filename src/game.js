@@ -1,6 +1,6 @@
 import { snake } from './snake.js'
 import { renderBoard, createGrid, renderLoss } from './DOM.js'
-import { gameEvents, startEvents, pauseEvents} from './events.js';
+import { lostGame} from './events.js';
 let food = 0;
 let direction = 'right';
 let timeout;
@@ -29,7 +29,7 @@ function gameFlow() {
             clearInterval(timeout);
             renderLoss();
             snake.reset();
-            startEvents();
+            lostGame();
         }
         else {renderBoard();}
     }
@@ -38,22 +38,23 @@ function gameFlow() {
 
 function gamePause() {
     clearInterval(timeout);
-    pauseEvents();
+    //pauseEvents();
 }
 
 function gameRestart() {
     timeout = setInterval(gameFlow, 100);
-    gameEvents();
+    //gameEvents();
 }
 
 
 
 function startGame(){
+    console.log("cc");
     createGrid();
     food = makeFood();
     renderBoard();
     timeout = setInterval(gameFlow,100);
-    gameEvents();
+    //gameEvents();
 }
 
 export {startGame, food, changeDirection, gamePause, gameRestart}
